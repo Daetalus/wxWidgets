@@ -1407,9 +1407,9 @@ void wxRichTextCtrl::OnChar(wxKeyEvent& event)
                     GetId());
                 cmdEvent1.SetEventObject(this);
                 cmdEvent1.SetFlags(flags);
-#if wxUSE_UNICODE
+#if wxUSE_UNICODE || !__WXUNIVERSAL__
                 cmdEvent1.SetCharacter(event.GetUnicodeKey());
-#else
+#elif !wxUSE_UNICODE || __WXUNIVERSAL__
                 cmdEvent1.SetCharacter((wxChar) keycode);
 #endif
                 cmdEvent1.SetPosition(m_caretPosition+1);
@@ -1424,9 +1424,9 @@ void wxRichTextCtrl::OnChar(wxKeyEvent& event)
                     GetId());
                 cmdEvent.SetEventObject(this);
                 cmdEvent.SetFlags(flags);
-#if wxUSE_UNICODE
+#if wxUSE_UNICODE || !__WXUNIVERSAL__
                 cmdEvent.SetCharacter(event.GetUnicodeKey());
-#else
+#elif !wxUSE_UNICODE || __WXUNIVERSAL__
                 cmdEvent.SetCharacter((wxChar) keycode);
 #endif
                 cmdEvent.SetPosition(m_caretPosition+1);
@@ -1467,9 +1467,9 @@ void wxRichTextCtrl::OnChar(wxKeyEvent& event)
                 long newPos = m_caretPosition;
                 DeleteSelectedContent(& newPos);
 
-#if wxUSE_UNICODE
+#if wxUSE_UNICODE || !__WXUNIVERSAL__
                 wxString str = event.GetUnicodeKey();
-#else
+#elif !wxUSE_UNICODE || __WXUNIVERSAL__
                 wxString str = (wxChar) event.GetKeyCode();
 #endif
                 GetFocusObject()->InsertTextWithUndo(& GetBuffer(), newPos+1, str, this, 0);
