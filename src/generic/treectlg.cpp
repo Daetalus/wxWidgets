@@ -1954,6 +1954,8 @@ void wxGenericTreeCtrl::ClearFocusedItem()
     wxTreeItemId item = GetFocusedItem();
     if ( item.IsOk() )
         SelectItem(item, false);
+
+    m_current = NULL;
 }
 
 void wxGenericTreeCtrl::SetFocusedItem(const wxTreeItemId& item)
